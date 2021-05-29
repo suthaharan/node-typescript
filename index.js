@@ -7,8 +7,8 @@ const app = express();
 const PORT = 3000;
 
 // mongoose connection
-mongoose.Promise = global.Promise;
-mongoose.connect('<insert your own credentials>', {
+// mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://acestra:JMfUhRjKHpquzYn7@cluster0.vaj7r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
     useMongoClient: true
 });
 
