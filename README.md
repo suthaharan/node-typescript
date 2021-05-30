@@ -138,8 +138,18 @@ app.listen(PORT, () =>
 **Enums in TypeScript**
 * Enums are immutable and are quite useful for settings
 * Enums are constants and can be strings/numbers
+```javascript
+// settings.ts
+export enum Settings{
+    mUser = "username",
+    mPassword = "userpassword-goes-here",
+    PORT = 4000,
+}
+```
 
 **Interface**
+* organize the code and type shaping
+
 ```javascript
 interface User{
     firstName: string,
@@ -150,18 +160,61 @@ const siteUser = (currentUser:User) => {
 let passUser = {
     firstName: 'Rakita'
 }
-
 app.listen(Settings.PORT, () =>
     console.log(siteUser(passUser), messages.messagePrint())
 );
-
 ```
+
 **Generics**
+* function that is reusable across components
+```javascript
+// with generics
+function siteUser<T>(name:T):T{
+    return name;
+}
+let passUser = siteUser<string>('Rakita!, ');
+```
 
 **Modules**
+* Used for organizing the code
+* Namespacing used for avoiding name collision by grouping classes together
 
 **Declaration merging**
+* Declare multiple properties with same name, typescript will merge them
+* You can use them with classes, interfaces, namespaces
+```javascript
+interface Employee{
+    department: string,
+    manager: string
+}
+interface Employee{
+    description: string
+}
+let officeEmployee:Employee = { department: 'IT', manager:'Hahn', description: 'Technology'};
+```
 
 **Iterators**
-
+* iterate through arrays of data
+```javascript
+let dataCity = ['Toronto', 'London', 'Hamilton'];
+for(let item of dataCity){
+    console.log(item);
+}
+for(let itemPos in dataCity){
+    console.log(itemPos);
+}
+```
 **Decorators**
+```javascript
+function messagePrint(target){
+    object.defineProperty(target.prototype, 'server', {value: () => "Running server data"})
+}
+
+@messagePrint
+export default class Message{
+    let name:string;
+    constructor(name){
+        this.name = name;
+    }
+}
+```

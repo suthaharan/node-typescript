@@ -27,17 +27,39 @@ routes(app);
 
 // serving static files
 app.use(express.static('public'));
+// with interface
+// interface User{
+//     firstName: string,
+// }
+// const siteUser = (currentUser:User) => {
+//     return `Hello, ${currentUser.firstName} - `;
+// }
+// let passUser = {
+//     firstName: 'Rakita'
+// }
 
-interface User{
-    firstName: string,
+// with generics
+function siteUser<T>(name:T):T{
+    return name;
 }
-const siteUser = (currentUser:User) => {
-    return `Hello, ${currentUser.firstName} - `;
-}
-let passUser = {
-    firstName: 'Rakita'
-}
+let passUser = siteUser<string>('Rakita!, ');
 
+interface Employee{
+    department: string,
+    manager: string
+}
+interface Employee{
+    description: string
+}
+let officeEmployee:Employee = { department: 'IT', manager:'Hahn', description: 'Technology'};
+
+let dataCity = ['Toronto', 'London', 'Hamilton'];
+for(let item of dataCity){
+    console.log(item);
+}
+for(let itemPos in dataCity){
+    console.log(itemPos);
+}
 app.get('/', (req, res) =>
     res.send(messages.messagePrint())
 );
